@@ -1,0 +1,26 @@
+<!-- Start: Registration Form with Photo -->
+<div ng-controller="register" class="register-photo" >
+  <!-- Start: Form Container -->
+  <div class="form-container">
+    <!-- Start: Image -->
+    <div class="image-holder" style="background-position: center;"></div>
+    <!-- End: Image -->
+    <form method="post" ng-controller="register" ng-submit="do_register()" name="register" novalidate>
+      <h2 class="text-center"><strong>Create</strong> an account.</h2>
+      <div ng-show="show_success_message" class="alert alert-success" role="alert">Account Created!<br><a href="login">Click here to Login!</a></div>
+      <div ng-show="show_error_message" class="alert alert-danger" role="alert">Registration Failed!</div>
+      <div class="form-group"><input class="form-control" type="" name="name" placeholder="Full Name" ng-model="full_name" required></div>
+      <div class="form-group"><input class="form-control" type="" name="age" placeholder="Age" ng-model="age" required></div>
+      <div class="form-group"><input class="form-control" type="email" name="email" placeholder="Email" ng-model="email" required></div>
+      <div class="form-group"><select ng-model="gender" ng-options="x for (x, y) in genders" class="form-control"><option value="" disabled selected>Gender</option></select></div>
+      <div class="form-group"><input class="form-control" type="password" name="password" placeholder="Password" ng-model="password" required></div>
+      <div class="form-group"><input class="form-control" type="password" name="password-repeat" placeholder="Password (repeat)" ng-model="password_repeat" required></div>
+      <!-- <div ng-show="register.password.$touched" class="form-group pl-3">Password Strength: <div class="" ng-style="">{{password_stength}}</div></div> -->
+      <div class="form-group">
+        <button ng-disabled="register.$invalid" class="btn btn-info btn-block" type="submit">Sign Up</button>
+      </div>
+        <a class="already text-secondary" href="#!/login" style="font-weight: bold;">You already have an account? Login here.</a>
+    </form>
+  </div>
+  <!-- End: Form Container -->
+</div>

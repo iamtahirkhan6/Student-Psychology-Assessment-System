@@ -1,0 +1,55 @@
+<div ng-controller="questionnaire_add" ng-init="init()" class="container h-100 pt-5 pb-5">
+  <div class="card shadow mb-2 bg-white rounded">
+    <h5 class="card-header">Admin Dashboard</h5>
+    <div class="card-body" style="">
+      <p class="card-text">
+        <div ng-show="step_1_visible" id="step_1">
+          <form name="psychology_test_form" novalidate>
+            <input type="text" id="name" ng-model="name" name="name" aria-describedby="test_name" placeholder="Psychology Test Name" class="form-control" required><br><br>
+
+            <textarea id="desc" ng-model="desc" name="desc" rows="6" placeholder="Description (Should be long)" class="form-control" required></textarea><br><br>
+
+            <textarea id="preview" ng-model="preview" name="preview" rows="3" placeholder="Psychology Test Name (For Homepage)" class="form-control" required></textarea><br><br>
+
+            <input type="text" id="num_questions" name="num_questions" ng-model="num_questions" aria-describedby="num_questions" placeholder="No. of questions?" class="form-control" required><br><br>
+
+            <input type="text" id="num_scoring_keys" name="num_scoring_keys" ng-model="num_scoring_keys" aria-describedby="num_scoring_keys" placeholder="No. of scoring keys?" class="form-control" required><br><br>
+
+            <button class="btn btn-primary pb-2 pl-3" ng-disabled="psychology_test_form.$invalid" ng-click="step_1()">Submit</button>
+          </form>
+        </div>
+
+        <div ng-show="step_2_visible" id="step_2">
+          <div data-ng-repeat="scoring_key in scoring_keys">
+            <form>
+            <div class="form-row align-items-center">
+              <div class="col-auto">
+                <input type="text" class="form-control mb-2" id="inlineFormInput" ng-model="scoring_key.name" placeholder="{{scoring_key.name}}">
+              </div>
+
+              <div class="col-auto">
+                <input type="text" class="form-control mb-2" id="inlineFormInput" ng-model="scoring_key.score" placeholder="{{scoring_key.score}}">
+              </div>
+            </div>
+          </form>
+          </div>
+          <br>
+          <button class="btn btn-primary pb-2 pl-3" ng-click="step_2()">Submit</button>
+        </div>
+
+        <div ng-show="step_3_visible" id="step_3">
+          <div data-ng-repeat="q in questions" ng-init="outerIndex = $index">
+            <form class="form-inline">
+            <div class="form-row align-items-center">
+              <input type="text" class="form-control mb-2" ng-model="q.name" name="" placeholder="Question Name" value="">&nbsp;&nbsp;&nbsp;&nbsp;
+              <button class="btn btn-danger pb-2 pl-3 mb-2" ng-click="removeNewQuestion()">Remove Question</button>
+              <br><br>
+            </div>
+          </form>
+          </div>
+          <button class="btn btn-primary pb-2 pl-3" ng-click="step_3()">Submit</button>
+        </div>
+      </p>
+    </div>
+  </div>
+</div>

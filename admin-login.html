@@ -1,0 +1,20 @@
+<!-- Start: Admin Login Form Clean -->
+<div class="login-clean">
+    <form method="post" ng-controller="admin_login" data-ng-init="init()">
+        <div ng-show="show_success_message" class="alert alert-success" role="alert">Successfully Logged in!</div>
+        <div ng-show="show_error_message" class="alert alert-danger" role="alert">Login Failed!</div>
+        <h2 class="sr-only">Admin Login Form</h2>
+        <div class="illustration"><i class="icon ion-locked"></i></div>
+        <div class="form-group"><input class="form-control" type="username" name="username" placeholder="Username" ng-model="username"></div>
+        <div class="form-group"><input class="form-control" type="password" name="password" placeholder="Password" ng-model="password"></div>
+        <div class="form-group"><button class="btn btn-info btn-block" type="submit" ng-click="admin_login()">Admin Panel Login</button></div>
+    </form>
+</div>
+<!-- End: Login Form Clean
+
+if(document.cookie.indexOf('access_token=') > 1)
+{
+  setTimeout(function(){window.location.href = base_url();}, 2000);
+}
+
+-->

@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+	<title>Student Psychology Assessment System - Home</title>
+	<link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css?h=0e131b37fa46ab6ee3e5054802fe64f2">
+	<link rel="stylesheet" href="assets/bootstrap/css/Montserrat.css">
+	<link rel="stylesheet" href="assets/fonts/ionicons.min.css">
+	<link rel="stylesheet" href="assets/fonts/simple-line-icons.min.css">
+	<link rel="stylesheet" href="assets/bootstrap/css/SourceSansPro.css">
+	<link rel="stylesheet" href="assets/css/styles.min.css">
+</head>
+
+<body ng-app="student_psychology_assessment" style="padding-top: 70px; color: #6e6e6e; background-color:#f1f7fc;">
+	<main class="page">
+		<!-- Start: Navigation Bar -->
+		<nav class="navbar navbar-dark navbar-expand-lg fixed-top bg-white clean-navbar" style="background: linear-gradient(120deg, #00e4d0, #5983e8);">
+			<div class="container">
+				<a class="navbar-brand logo" href="#">Student Psychology Assessment</a>
+				<button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="collapse navbar-collapse" id="navcol-1">
+					<ul class="nav navbar-nav ml-auto">
+						<li class="nav-item" role="presentation"><a class="nav-link" href="#/!" id="nav_home">Home</a></li>
+						<li class="nav-item" role="presentation"><a class="nav-link" href="#!register" id="nav_register">Register</a></li>
+						<li class="nav-item" role="presentation"><a class="nav-link" href="#!login" id="nav_login">Login</a></li>
+						<li class="nav-item" role="presentation"><a class="nav-link" href="#!project_information" id="nav_about_us">Project Information</a></li>
+						<li class="nav-item" role="presentation"><a class="nav-link" href="#!contact_us" id="nav_contact_us">Contact Us</a></li>
+					</ul>
+				</div>
+			</div>
+		</nav>
+		<!-- End: Navidation -->
+		<div ng-view></div>
+	</main>
+	<footer style="" class="page-footer dark">
+		<div class="container">
+			<div class="row justify-content-center">
+				<div class="col-sm-3">
+					<h5>Get started</h5>
+					<ul>
+						<li><a href="#/!">Home</a></li>
+						<li><a href="#!register">Sign up</a></li>
+						<li><a href="#!references">References</a></li>
+					</ul>
+				</div>
+				<div class="col-sm-3">
+					<h5>About us</h5>
+					<ul>
+						<li><a href="#!project_information">Project Information</a></li>
+						<li><a href="#!contact_us">Contact us</a></li>
+					</ul>
+				</div>
+				<div class="col-sm-3">
+					<h5>Management</h5>
+					<ul>
+						<li><a href="#!admin">Admin Panel</a></li>
+					</ul>
+				</div>
+
+			</div>
+		</div>
+		<div class="footer-copyright">
+			<p>Developed By&nbsp;<strong>Tahir Khan</strong>&nbsp;@&nbsp;<strong>Jagran Lakecity University<br></strong></p>
+		</div>
+	</footer>
+
+	<script src="assets/js/jquery.min.js"></script>
+	<script src="assets/bootstrap/js/bootstrap.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.js"></script>
+	<script src="assets/js/script.min.js"></script>
+	<script src="assets/js/angular.js"></script>
+	<script src="assets/js/angular-route.js"></script>
+
+	<script type="text/javascript">
+		function validate_email(e) {
+			return !!/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(e)
+		}
+
+		function createCookie(e, t, i) {
+			var n, o;
+			i ? ((n = new Date).setTime(n.getTime() + 24 * i * 60 * 60 * 1e3), o = "; expires=" + n.toGMTString()) : o = "", document.cookie = e + "=" + t + o + "; path=/"
+		}
+
+		function base_url() {
+			var o = location.pathname.split("/");
+			if ("localhost" == location.host) var i = location.origin + "/" + o[1].trim("/") + "/";
+			else i = location.origin;
+			return i
+		}
+
+		function getCookie(cname) {
+			var name = cname + "=";
+			var decodedCookie = decodeURIComponent(document.cookie);
+			var ca = decodedCookie.split(';');
+			for (var i = 0; i < ca.length; i++) {
+				var c = ca[i];
+				while (c.charAt(0) == ' ') {
+					c = c.substring(1);
+				}
+				if (c.indexOf(name) == 0) {
+					return c.substring(name.length, c.length);
+				}
+			}
+			return "";
+		}
+
+		function go_to(ext) {
+			window.location.href = base_url() + ext;
+			return;
+		}
+
+		var spa = angular.module("student_psychology_assessment", ['ngRoute']);
+
+		spa.config(['$routeProvider',
+
+			function($routeProvider) {
+				$routeProvider.
+				when('/index', {
+					templateUrl: 'index_page.html',
+					controller: 'show_tests'
+				}).
+				when("/login", {
+					templateUrl: 'login.html',
+					controller: 'login'
+				}).
+				when("/admin", {
+					templateUrl: 'admin-login.html',
+					controller: 'admin_login'
+				}).
+				when("/admin_dashboard", {
+					templateUrl: 'admin_dashboard.html',
+					controller: 'admin_dashboard'
+				}).
+				when("/register", {
+					templateUrl: 'register.html',
+					controller: 'register'
+				}).
+				when("/contact_us", {
+					templateUrl: 'contact-us.html',
+					controller: 'contact_us'
+				}).
+				when("/references", {
+					templateUrl: 'references.html',
+					controller: 'references'
+				}).
+				when("/project_information", {
+					templateUrl: 'project_information.html',
+					controller: 'project_information'
+				}).
+				when("/questionnaire_add", {
+					templateUrl: 'questionnaire_add.html',
+					controller: 'questionnaire_add'
+				}).
+				when("/questionnaire/:id", {
+					templateUrl: 'questionnaire.html',
+					controller: 'questionnaire'
+				}).
+				when("/questionnaire_edit/:id", {
+					templateUrl: 'questionnaire_edit.html',
+					controller: 'questionnaire_edit'
+				}).
+				when("/questionnaire_delete/:id", {
+					templateUrl: 'questionnaire_delete.html',
+					controller: 'questionnaire_delete'
+				}).
+				otherwise({
+					redirectTo: '/index'
+				});
+			}
+		]);
+
+		spa.controller("show_tests", function($scope, $http) {
+
+			$scope.test_list = [];
+			$scope.response = "";
+
+			$scope.getRequest = function() {
+				angular.element('#nav_home').addClass("active");
+				$http.get("api/api.php?method=GET&table=tests&limit=3").then(
+
+					function successCallback(response) {
+						$scope.response = JSON.stringify(response);
+
+						// Process the data
+						$scope.response = JSON.parse($scope.response);
+						response_code = $scope.response.data["response_code"];
+						if (response_code == "200") {
+							for (var k in $scope.response.data["response_data"]) {
+								each_test = $scope.response.data["response_data"][k];
+								$scope.test_list.push({
+									test_id: each_test.test_id,
+									test_name: each_test.test_name,
+									test_desc: each_test.test_desc,
+									test_preview: each_test.test_preview,
+									test_thumbnail: each_test.test_thumbnail
+								});
+							}
+						} else {
+							alert("API is not working");
+						}
+					},
+
+					function errorCallback(response) {
+						alert("Unable to perform api request");
+					}
+				);
+			};
+		});
+
+		spa.controller("register", function($scope, $http) {
+
+			$scope.genders = {
+				Male: "male",
+				Female: "female"
+			};
+
+			$scope.do_register = function() {
+
+				$scope.show_success_message = false;
+				$scope.show_error_message = false;
+
+				if (validate_email($scope.email) == true && $scope.full_name != "" &&
+					$scope.age != "" && $scope.gender != "" && $scope.email != "" &&
+					$scope.password != "" && $scope.password_repeat != "" &&
+					$scope.password == $scope.password_repeat) {
+					api_url = "api/api.php?action=register&email=" +
+						$scope.email + "&password=" +
+						$scope.password + "&name=" +
+						$scope.full_name + "&age=" +
+						$scope.age + "&gender=" +
+						$scope.gender;
+					$http.get(api_url).then(
+						function successCallback(response) {
+
+							var response = JSON.parse(JSON.stringify(response));
+							response_code = response.data["response_code"];
+
+							if (response_code == "200") {
+								for (var k in response.data["response_data"]) {
+									$scope.show_success_message = true;
+									$scope.full_name = "";
+									$scope.age = "";
+									$scope.gender = "";
+									$scope.email = "";
+									$scope.password = "";
+									$scope.password_repeat = "";
+								}
+							} else {
+								$scope.show_error_message = true;
+							}
+						},
+						function errorCallback(response) {
+							$scope.show_error_message = true;
+							alert("API not working");
+						}
+					);
+				}
+			};
+		});
+
+		spa.controller("references", function($scope, $http) {
+
+		});
+
+		spa.controller("project_information", function($scope, $http) {
+
+		});
+
+		spa.controller("login", function($scope, $http) {
+
+			$scope.do_login = function() {
+				if (document.cookie.indexOf('access_token') == 1) {
+					window.location = "#!/index";
+				}
+
+				$scope.show_success_message = false;
+				$scope.show_error_message = false;
+
+				if (validate_email($scope.email) == true && $scope.password != "") {
+					api_url = "api/api.php?action=login&email=" + $scope.email + "&password=" + $scope.password;
+					$http.get(api_url).then(
+						function successCallback(response) {
+
+							var response = JSON.parse(JSON.stringify(response));
+							response_code = response.data["response_code"];
+
+							if (response_code == "200") {
+								for (var k in response.data["response_data"]) {
+									access_token = response.data["response_data"][k];
+									createCookie("access_token", access_token, "30");
+
+									//////////////
+									$http.get("api/api.php?action=access_token&access_token=" + access_token).then(
+										function successCallback(response) {
+
+											var response = JSON.parse(JSON.stringify(response));
+											response_code = response.data["response_code"];
+
+											if (response_code == "200") {
+												user_data = response.data["response_data"];
+												createCookie("user_id", user_data, "30");
+												console.log(user_data);
+											} else {
+												//$scope.show_error_message = true;
+												console.log("Access token not working!");
+											}
+										},
+										function errorCallback(response) {
+											$scope.show_error_message = true;
+											console.log(response);
+											alert("API not working");
+										}
+									);
+
+									///////////////
+
+
+									$scope.show_success_message = true;
+									setTimeout(function() {
+										window.location.href = base_url();
+									}, 2000);
+								}
+							} else {
+								$scope.show_error_message = true;
+							}
+						},
+						function errorCallback(response) {
+							$scope.show_error_message = true;
+							console.log(response);
+							alert("API not working");
+						}
+					);
+				}
+			};
+		});
+
+		spa.controller("admin_login", function($scope, $http) {
+
+			$scope.init = function() {
+				if (document.cookie.indexOf('access_token') < 1 && getCookie(is_admin_logged) != "true") {
+					window.location.href = base_url() + "#!admin";
+				} else {
+					window.location.href = base_url() + "#!admin_dashboard";
+				}
+			};
+
+			$scope.admin_login = function() {
+
+				$scope.show_success_message = false;
+				$scope.show_error_message = false;
+
+				if ($scope.username != "" && $scope.password != "") {
+					api_url = "api/api.php?action=login&username=" + $scope.username + "&password=" + $scope.password;
+					$http.get(api_url).then(
+						function successCallback(response) {
+
+							var response = JSON.parse(JSON.stringify(response));
+							response_code = response.data["response_code"];
+
+							if (response_code == "200") {
+								for (var k in response.data["response_data"]) {
+									access_token = response.data["response_data"][k];
+									createCookie("access_token", access_token, "30");
+									createCookie("is_admin_logged", "true", "30");
+									$scope.show_success_message = true;
+									setTimeout(function() {
+										console.log(base_url());
+										window.location.href = base_url() + "#!admin_dashboard";
+									}, 2000);
+								}
+							} else {
+								$scope.show_error_message = true;
+							}
+						},
+						function errorCallback(response) {
+							$scope.show_error_message = true;
+							alert("API not working");
+						}
+					);
+				}
+			};
+		});
+
+		spa.controller("admin_dashboard", function($scope, $http) {
+
+			$scope.init = function() {
+				if (document.cookie.indexOf('access_token') < 1 && getCookie("is_admin_logged") != "true") {
+					window.location.href = base_url() + "#!admin";
+				}
+
+				$scope.questionnaires_list = [];
+				$http.get("api/api.php?method=GET&table=tests").then(
+
+					function successCallback(response) {
+						var response = JSON.parse(JSON.stringify(response));
+						response_code = response.data["response_code"];
+						response_data = response.data["response_data"];
+
+						if (response_code == "200") {
+							for (var k in response_data) {
+								each_test = response_data[k];
+								$scope.questionnaires_list.push({
+									test_id: each_test.test_id,
+									test_name: each_test.test_name,
+									test_desc: each_test.test_desc,
+									test_preview: each_test.test_preview,
+									test_thumbnail: each_test.test_thumbnail
+								});
+							}
+							//console.log($scope.questionnaires_list);
+						} else {
+							alert("No test found");
+						}
+					},
+					function errorCallback(response) {
+						alert("API not working");
+					}
+				);
+
+
+			};
+		});
+
+		spa.controller("questionnaire_add", function($scope, $http) {
+
+			$scope.init = function() {
+				if (document.cookie.indexOf('access_token') < 1 && getCookie("is_admin_logged") != "true") {
+					window.location.href = base_url() + "#!admin";
+				}
+			}
+
+			$scope.questionnaire = [];
+			$scope.questions = [];
+			$scope.scoring_keys = [];
+
+			///////////////////////////////////////////////////////// STEP 1
+
+			$scope.step_1_visible = true;
+			$scope.step_2_visible = false;
+			$scope.step_3_visible = false;
+
+			$scope.step_1 = function() {
+				console.log($scope.name);
+				console.log($scope.desc);
+				console.log($scope.num_scoring_keys);
+				console.log($scope.num_questions);
+
+				$scope.step_1_visible = false;
+				$scope.step_2_visible = true;
+				$scope.step_3_visible = false;
+
+				/////////////////////////////////////////////////////////  STEP 1.2
+
+
+				for (var n = 1; n <= $scope.num_scoring_keys; n++) {
+					$scope.scoring_keys.push({
+						'id': 'n',
+						'name': 'Scoring Key ' + n,
+						'score': '0'
+					})
+				}
+				console.log($scope.scoring_keys);
+			}
+
+			/////////////////////////////////////////////////////////  STEP 2
+
+			$scope.step_2 = function() {
+				for (var i = 1; i <= $scope.num_questions; i++) {
+
+					$scope.questions.push({
+						'id': 'question' + i,
+						'name': 'Question ' + i,
+						'keys': $scope.scoring_keys,
+						'answer': ''
+					});
+				}
+				console.log($scope.questions);
+
+				$scope.step_2_visible = false;
+				$scope.step_3_visible = true;
+			}
+
+			$scope.step_3 = function() {
+				console.log($scope.questions)
+			}
+
+			///////////////////////////////////////////////////////// STEP 3
+
+			for (var i = 1; i <= $scope.num_questions; i++) {
+
+				$scope.questions.push({
+					'id': 'question' + i,
+					'name': 'Question ' + i,
+					'keys': $scope.scoring_keys
+				});
+			}
+			console.log($scope.questions);
+
+			$scope.questionnaire.push($scope.name);
+			$scope.questionnaire.push($scope.desc);
+			$scope.questionnaire.push($scope.questions);
+
+			///////////////////////////////////////////////////////// STEP 3.2
+
+			$scope.addNewQuestion = function() {
+				var newItemNo = $scope.questions.length + 1;
+				$scope.questions.push({
+					'id': 'choice' + newItemNo,
+					'name': 'choice' + newItemNo
+				});
+			};
+
+			$scope.removeNewQuestion = function() {
+				var newItemNo = $scope.questions.length - 1;
+				if (newItemNo !== 0) {
+					$scope.questions.pop();
+				}
+			};
+
+			$scope.showAddQuestion = function(choice) {
+				//return choice.id === $scope.choices[$scope.choices.length-1].id;
+				return false;
+			};
+
+			$scope.step_3 = function() {
+				var data = {
+					method: "POST",
+					table: "tests",
+					test_name: $scope.name,
+					test_desc: $scope.desc,
+					test_preview: $scope.preview,
+					test_questions: $scope.questions,
+					test_thumbnail: "blah.jpg"
+				};
+				$http.post('api/api.php?method=POST&table=tests', JSON.stringify(data)).then(
+					function(response) {
+						console.log(response);
+						if (response.data) {
+							$scope.msg = "Post Data Submitted Successfully!";
+							go_to('#!/admin_dashboard');
+						}
+					},
+					function(response) {
+						$scope.msg = "Service does not exists";
+						$scope.statusval = response.status;
+						$scope.statustext = response.statusText;
+						$scope.headers = response.headers();
+					});
+				console.log($scope.questions);
+				$scope.answer = angular.toJson($scope.questions);
+				localStorage.setItem("question", $scope.answer);
+			}
+
+		});
+
+		spa.controller('questionnaire_edit', ['$scope', '$routeParams', '$http', function($scope, $routeParams, $http) {
+			var id = $routeParams.id;
+			if (document.cookie.indexOf('access_token') < 1 && getCookie("is_admin_logged") != "true") {
+				window.location.href = base_url() + "#!admin";
+			}
+
+		}]);
+
+		spa.controller('questionnaire_delete', ['$scope', '$routeParams', '$http', function($scope, $routeParams, $http) {
+			var id = $routeParams.id;
+
+			$scope.init = function() {
+				if (document.cookie.indexOf('access_token') < 1 && getCookie("is_admin_logged") != "true") {
+					window.location.href = base_url() + "#!admin";
+				}
+
+				$http.get("api/api.php?method=GET&table=tests&id=" + id).then(
+					function successCallback(response) {
+						var response = JSON.parse(JSON.stringify(response));
+
+						response_code = response.data["response_code"];
+						response_data = response.data["response_data"];
+
+						if (response_code == "200") {
+
+							$scope.test_id = response_data.test_id;
+							$scope.test_name = response_data.test_name;
+							$scope.test_desc = response_data.test_desc;
+							$scope.test_thumbnail = response_data.test_thumbnail;
+							$scope.test_questions = angular.fromJson(response_data.test_questions);
+						} else {
+							alert("No test found");
+						}
+					},
+					function errorCallback(response) {
+						alert("API not working");
+					}
+				);
+			}
+
+			$scope.delete = function() {
+				$http.get("api/api.php?method=DELETE&table=tests&id=" + id).then(
+					function successCallback(response) {
+						var response = JSON.parse(JSON.stringify(response));
+
+						response_code = response.data["response_code"];
+						response_data = response.data["response_data"];
+
+						if (response_code == "200") {
+							console.log(response_data);
+						} else {
+							go_to('#!/admin_dashboard');
+						}
+					},
+					function errorCallback(response) {
+						alert("API not working");
+					}
+				);
+			}
+
+			$scope.dont_delete = function() {
+				go_to('#!/admin_dashboard');
+			}
+
+		}]);
+
+		spa.controller('questionnaire', ['$scope', '$routeParams', '$http', function($scope, $routeParams, $http) {
+			var id = $routeParams.id;
+			$scope.take_test_btn = false;
+			$scope.test_form = true;
+			$scope.progressbar = false;
+			$scope.show_result = false;
+
+			$scope.load_questionnaire = function() {
+				if (document.cookie.indexOf('access_token') == -1) {
+					window.location = "#!/login";
+				}
+				$http.get("api/api.php?method=GET&table=tests&id=" + id).then(
+					function successCallback(response) {
+						var response = JSON.parse(JSON.stringify(response));
+						console.log(console);
+						response_code = response.data["response_code"];
+						response_data = response.data["response_data"];
+
+						if (response_code == "200") {
+
+							$scope.test_id = response_data.test_id;
+							$scope.test_name = response_data.test_name;
+							$scope.test_desc = response_data.test_desc;
+							$scope.test_thumbnail = response_data.test_thumbnail;
+							$scope.test_questions = angular.fromJson(response_data.test_questions);
+							//if ($scope.test_questions.length > 10) $scope.test_questions.length = 2;
+						} else {
+							alert("No test found");
+						}
+					},
+					function errorCallback(response) {
+						alert("API not working");
+					}
+				);
+			}
+
+			$scope.score = function() {
+				//console.log($scope.test_questions);
+				var score = Number(0);
+				for (var i = 0; i < $scope.test_questions.length; i++) {
+					score = Number(score) + Number($scope.test_questions[i]["answer"]);
+				}
+				score = Math.round(Number(score) / Number($scope.test_questions.length));
+				$scope.score = score;
+				$scope.out_of = $scope.test_questions[0].keys.length;
+				$scope.show_result = true;
+				$scope.progressbar = false;
+				$scope.test_form = false;
+				$scope.take_test_btn = false;
+			}
+
+			$scope.show_test_form = function() {
+				$scope.test_form = true;
+				$scope.progressbar = false;
+				$scope.take_test_btn = false;
+				$scope.show_result = false;
+			}
+		}]);
+	</script>
+</body>
+
+</html>

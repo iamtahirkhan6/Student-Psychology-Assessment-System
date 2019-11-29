@@ -1,0 +1,33 @@
+<div ng-controller="admin_dashboard" ng-init="init()" class="container h-100 pt-5 pb-5">
+  <div class="card shadow mb-2 bg-white rounded">
+    <h5 class="card-header">Admin Dashboard</h5>
+    <div class="card-body" style="height:500px;">
+      <!-- <h3 class="card-title text-primary">{{test_name}}</h3> -->
+      <p class="card-text">
+        <ul class="list-group">
+          <a href="#!/questionnaire_add" class="list-group-item list-group-item-action active w-25">Add a questionnaire</a>
+        </ul>
+        <br>
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Test Name</th>
+              <th scope="col">Change</th>
+              <th scope="col">Remove</th>
+            </tr>
+          </thead>
+          <tbody>
+              <tr ng-repeat="n in questionnaires_list">
+                <th scope="row">{{n.test_id}}</th>
+                <td>{{n.test_name}}</td>
+                <td><a href="#!/questionnaire_edit/{{n.test_id}}" class="">Edit</a></td>
+                <td><a href="#!/questionnaire_delete/{{n.test_id}}" class="">Delete</a></td>
+              </tr>
+            </tbody>
+          </table>
+
+      </p>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,18 @@
+<div ng-controller="questionnaire_delete" ng-init="init()" class="container h-100 pt-5 pb-5">
+  <div class="card shadow mb-2 bg-white rounded">
+    <h5 class="card-header">Admin Dashboard</h5>
+    <div class="card-body" style="height:500px;">
+      <!-- <h3 class="card-title text-primary">{{test_name}}</h3> -->
+      <p class="card-text">
+        <br>
+        <div class="d-flex justify-content-center">Are you sure you want to delete&nbsp;<b>"{{test_name}}"</b>?</div>
+        <br>
+        <div class="d-flex justify-content-center">
+          <button type="button" class="btn btn-danger" ng-click="delete()">Yes</button>
+          &nbsp;&nbsp;&nbsp;&nbsp;
+          <button type="button" class="btn btn-success" ng-click="dont_delete()">No</button>
+        </div>
+      </p>
+    </div>
+  </div>
+</div>

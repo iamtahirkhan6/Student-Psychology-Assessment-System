@@ -1,0 +1,35 @@
+<div ng-controller="questionnaire" ng-init="load_questionnaire()" class="container h-100 pt-5 pb-5">
+  <div class="card shadow mb-5 bg-white rounded">
+    <!-- <h5 class="card-header">{{test_name}}</h5> -->
+    <div class="card-body">
+      <!-- <h3 class="card-title text-primary">{{test_name}}</h3> -->
+      <div class="p-3 mb-2 text-white text-center" style="background: linear-gradient(120deg, #00e4d0, #5983e8);">{{test_name}}</div>
+      <p class="card-text" style="text-align: justify;">{{test_desc}}</p>
+
+      <!-- <div class="progress" ng-show="progressbar">
+        <div class="progress-bar progress-bar-striped bg-success progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 75%"></div>
+      </div> -->
+
+      <form name="psychology_test_form" ng-show="test_form" novalidate>
+      <div ng-repeat="question in test_questions" ng-init="rowIndex = $index">
+        <br>
+        <p class="pb-2 pl-4 font-weight-bold">{{question.name}}</p>
+      <ul class="" style="list-style-type: none;">
+        <li ng-repeat="key in question.keys" >
+          <input type="radio"
+               name="{{question.id}}"
+               id="{{question.id}}"
+               value="{{key.score}}"
+               ng-model="question.answer" required />
+          <label for="{{question.id}}">{{key.name}}</label>
+        </li>
+      </ul>
+
+      </div>
+      <button ng-disabled="psychology_test_form.$invalid" class="btn btn-success" type="submit" ng-click="score()">Score!</button>
+    </form>
+    <a href="" ng-click="show_test_form()" class="btn btn-primary pb-2 pl-3" ng-show="take_test_btn">Take this test!</a>
+    <h4 ng-show="show_result">Your score is: {{score}}/{{out_of}}</h4>
+    </div>
+  </div>
+</div>

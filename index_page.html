@@ -1,0 +1,27 @@
+<div ng-controller="show_tests" class="jumbotron text-center" style="background-color: #e9ecef;">
+  <h1 color="gray">Heal The Body. Relax Your Mind.</h1>
+  <p><br>Obtaining standardized measure of behavior made simple by examining behavior and emotions of an individual.<br></p>
+  <p><a href="#!project_information" class="btn btn-primary text-light" role="button">Learn more</a></p>
+</div>
+<!-- Start: Card-Group1 Shadow -->
+<section>
+  <div class="container" ng-init="getRequest()">
+    <div class="row">
+      <!-- Start: Teaser -->
+      <div class="col-lg-4" ng-repeat="test in test_list">
+        <!-- Start: Custom Card with Shadow -->
+        <div class="card mb-4 box-shadow rounded-0"><img class="card-img-top w-100 d-block rounded-0" src="{{test.test_thumbnail}}" style="width: 345px;height: 190px;">
+          <div class="card-body">
+            <a href="#!questionnaire/{{test.test_id}}" class="text-dark" style="text-decoration:none;"><h3 class="text-center" style="font-size: 24px;">{{test.test_name}}</h3></a>
+            <hr>
+            <p class="card-text" style="font-size: 14px;">{{test.test_preview}}</p>
+          </div>
+        </div>
+        <!-- End: Custom Card with Shadow -->
+      </div>
+      <!-- End: Teaser -->
+    </div>
+  </div>
+  </div>
+</section>
+<!-- End: Card-Group1 Shadow -->
